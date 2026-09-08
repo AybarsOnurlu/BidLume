@@ -38,7 +38,7 @@ export async function sendToBackground(type, data = null) {
     const response = await chrome.runtime.sendMessage({ type, data });
     return response;
   } catch (error) {
-    console.error(`[UpLens] Could not send message to background (${type}):`, error);
+    console.error(`[BidLume] Could not send message to background (${type}):`, error);
     return { success: false, error: error.message };
   }
 }
@@ -57,7 +57,7 @@ export async function sendToTab(tabId, type, data = null) {
     const response = await chrome.tabs.sendMessage(tabId, { type, data });
     return response;
   } catch (error) {
-    console.error(`[UpLens] Could not send message to tab (tabId: ${tabId}, ${type}):`, error);
+    console.error(`[BidLume] Could not send message to tab (tabId: ${tabId}, ${type}):`, error);
     return { success: false, error: error.message };
   }
 }
@@ -78,7 +78,7 @@ export async function sendToActiveTab(type, data = null) {
     }
     return sendToTab(tab.id, type, data);
   } catch (error) {
-    console.error(`[UpLens] Could not send message to active tab (${type}):`, error);
+    console.error(`[BidLume] Could not send message to active tab (${type}):`, error);
     return { success: false, error: error.message };
   }
 }

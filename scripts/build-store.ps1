@@ -4,8 +4,8 @@ $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $submissionRoot = Join-Path $projectRoot 'Store_Submission'
 $manifest = Get-Content -Raw -Encoding UTF8 (Join-Path $projectRoot 'manifest.json') | ConvertFrom-Json
 $version = $manifest.version
-$buildDir = Join-Path $submissionRoot "uplens-production-build-v$version"
-$zipPath = Join-Path $submissionRoot "uplens-production-build-v$version.zip"
+$buildDir = Join-Path $submissionRoot "bidlume-production-build-v$version"
+$zipPath = Join-Path $submissionRoot "bidlume-production-build-v$version.zip"
 
 if (-not $buildDir.StartsWith($submissionRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
   throw 'Build directory resolved outside Store_Submission.'

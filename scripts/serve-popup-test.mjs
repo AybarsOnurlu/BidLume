@@ -38,5 +38,5 @@ createServer(async (request, response) => {
     response.end(error.message);
   }
 }).listen(port, '127.0.0.1', () => {
-  console.log(`UpLens popup test server: http://127.0.0.1:${port}/popup/popup.html`);
+  console.log(`BidLume popup test server: http://127.0.0.1:${port}/popup/popup.html`);
 });

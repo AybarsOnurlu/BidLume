@@ -38,6 +38,9 @@ class OnboardingTour {
       }
     ];
     this.currentStep = 0;
+    this.ended = false;
+    this.stepTimer = null;
+    this.positionTimer = null;
     this.overlay = null;
     this.tooltip = null;
     this.languageBox = null;
@@ -90,6 +93,9 @@ class OnboardingTour {
   }
 
   showStep() {
+    if (this.ended) return;
+    clearTimeout(this.stepTimer);
+    clearTimeout(this.positionTimer);
     this.clearHighlight();
     const step = this.steps[this.currentStep];
 
@@ -102,7 +108,8 @@ class OnboardingTour {
     const tabBtn = document.querySelector(`[data-tab="${step.tab}"]`);
     if (tabBtn) tabBtn.click();
 
-    setTimeout(() => {
+    this.stepTimer = setTimeout(() => {
+      if (this.ended) return;
       const targetEl = document.querySelector(step.target);
       if (!targetEl) {
         this.end();
@@ -173,6 +180,7 @@ class OnboardingTour {
       const selectedLang = languageSelect.value;
       const settings = await StorageHelper.getSettings();
       await StorageHelper.saveSettings({ ...settings, language: selectedLang });
+      if (this.ended) return;
       refreshLanguageBox(selectedLang);
       await this.end();
     });
@@ -181,6 +189,7 @@ class OnboardingTour {
       const selectedLang = languageSelect.value;
       const settings = await StorageHelper.getSettings();
       await StorageHelper.saveSettings({ ...settings, language: selectedLang });
+      if (this.ended) return;
       
       refreshLanguageBox(selectedLang);
       
@@ -196,7 +205,7 @@ class OnboardingTour {
     this.activeTarget = el;
     
     // Scroll into view if needed
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.scrollIntoView({ behavior: 'instant', block: 'center' });
 
     // Store original styles that we might change
     this.originalStyles.set(el, {
@@ -247,7 +256,8 @@ class OnboardingTour {
 
   positionTooltip(targetEl) {
     // Need a tiny delay to ensure element is in viewport after scrollIntoView
-    setTimeout(() => {
+    this.positionTimer = setTimeout(() => {
+      if (this.ended) return;
       const rect = targetEl.getBoundingClientRect();
       const tooltipRect = this.tooltip.getBoundingClientRect();
       
@@ -275,6 +285,10 @@ class OnboardingTour {
   }
 
   async end() {
+    if (this.ended) return;
+    this.ended = true;
+    clearTimeout(this.stepTimer);
+    clearTimeout(this.positionTimer);
     this.clearHighlight();
     if (this.overlay) this.overlay.remove();
     if (this.tooltip) this.tooltip.remove();

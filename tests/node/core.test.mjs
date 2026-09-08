@@ -197,6 +197,28 @@ test('history is deduplicated, bounded, and keeps lastAnalysis in sync', async (
   assert.equal(state[STORAGE_KEYS.LAST_ANALYSIS].jobId, 'job-4');
 });
 
+test('rebranding keeps legacy storage keys and existing user data intact', async () => {
+  assert.deepEqual(STORAGE_KEYS, { ANALYSIS_HISTORY: 'analysisHistory', USER_PROFILE: 'userProfile', SETTINGS: 'settings', LAST_ANALYSIS: 'lastAnalysis' });
+  const legacy = { userProfile: { ...DEFAULT_USER_PROFILE, skills: ['Rust'], openAIApiKey: 'test-only', theme: 'light' }, settings: { ...DEFAULT_SETTINGS, language: 'de', hasSeenTour: true }, analysisHistory: [{ jobId: 'legacy-job', overallScore: 70 }], lastAnalysis: { jobId: 'legacy-job', overallScore: 70 } };
+  const state = installChromeStorage(legacy);
+  assert.deepEqual(await StorageHelper.getUserProfile(), legacy.userProfile);
+  assert.deepEqual(await StorageHelper.getSettings(), legacy.settings);
+  assert.deepEqual(await StorageHelper.getHistory(), legacy.analysisHistory);
+  assert.deepEqual(await StorageHelper.getLastAnalysis(), legacy.lastAnalysis);
+  assert.deepEqual(state, legacy);
+});
+
+test('Patreon remains an optional safe external link in every locale', async () => {
+  const html = await readFile(new URL('../../popup/popup.html', import.meta.url), 'utf8');
+  assert.match(html, /id="support-patreon"[^>]+href="https:\/\/www\.patreon\.com\/cw\/AybarsOnurlu"[^>]+rel="noopener noreferrer"/);
+  for (const locale of Object.values(TRANSLATIONS)) {
+    assert.ok(locale.ui.supportPatreon.includes('Patreon'));
+    assert.equal(locale.ui.appName, 'BidLume');
+    assert.equal(locale.ui.version, 'v1.0.3');
+  }
+  assert.notEqual(TRANSLATIONS.en.ui.supportPatreon, TRANSLATIONS.tr.ui.supportPatreon);
+});
+
 test('localhost custom AI works without a key and sends no authorization header', async () => {
   let captured;
   globalThis.fetch = async (url, options) => {

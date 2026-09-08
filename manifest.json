@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "UpLens",
-  "short_name": "UpLens",
-  "version": "1.0.2",
+  "name": "BidLume — Upwork Job Fit & Risk Analyzer",
+  "short_name": "BidLume",
+  "version": "1.0.3",
   "description": "Score Upwork jobs for risk, client quality, budget fit, and skill match. Optional BYOK AI.",
   "permissions": ["storage"],
   "host_permissions": [

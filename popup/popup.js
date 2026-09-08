@@ -143,6 +143,7 @@ function updateStaticUI() {
   if (clearHistoryBtn) setTabText(clearHistoryBtn, t('ui.clearHistory'));
   
   // Footer
+  document.getElementById('support-patreon').textContent = t('ui.supportPatreon');
   const footer = document.querySelector('footer p');
   if (footer) {
     footer.textContent = `${t('ui.version')} • ${t('ui.developedBy')} Aybars`;
@@ -336,7 +337,7 @@ async function initTheme() {
   });
   
   document.getElementById('theme-toggle').addEventListener('click', () => {
-    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
     setTheme(nextTheme);
     StorageHelper.saveUserProfile({ theme: nextTheme });
   });

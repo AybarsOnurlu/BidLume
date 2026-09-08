@@ -1,6 +1,6 @@
-# Contributing to UpLens
+# Contributing to BidLume
 
-Thank you for helping improve UpLens. Keep changes focused on the extension's single purpose: evaluating supported Upwork job listings for risk, client quality, budget fit, and skill match.
+Thank you for helping improve BidLume. Keep changes focused on the extension's single purpose: evaluating supported Upwork job listings for risk, client quality, budget fit, and skill match.
 
 ## Before opening a pull request
 

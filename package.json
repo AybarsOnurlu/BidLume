@@ -1,6 +1,6 @@
 {
-  "name": "uplens-extension",
-  "version": "1.0.2",
+  "name": "bidlume-extension",
+  "version": "1.0.3",
   "private": true,
   "type": "module",
   "scripts": {
