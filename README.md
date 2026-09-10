@@ -8,9 +8,9 @@ BidLume is an open-source Manifest V3 browser extension for freelancers who use 
 
 > BidLume is an independent project. It is not affiliated with, endorsed by, or sponsored by Upwork.
 
-Previously **UpLens**. Version **1.0.3** introduces the BidLume name and icon while keeping the same Chrome Web Store item, settings, and local history. The repository URL remains unchanged so existing links continue to work.
+Previously **UpLens**. Version **1.0.3** introduces the BidLume name and icon while keeping the same Chrome Web Store item, settings, and local history. GitHub redirects the former repository URL to this renamed repository so existing links continue to work.
 
-[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/eipepdcljdgekijmegfdeohkhkldkkdc) · [Report an issue](https://github.com/AybarsOnurlu/Uplens/issues)
+[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/eipepdcljdgekijmegfdeohkhkldkkdc) · [Report an issue](https://github.com/AybarsOnurlu/BidLume/issues)
 
 The store may still show the previous name until the 1.0.3 update is reviewed and published.
 

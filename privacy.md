@@ -43,4 +43,4 @@ The popup includes an optional link to the developer's Patreon page. Opening it 
 
 ## 8. Contact
 If you have any questions or concerns about this Privacy Policy, please open an issue on our GitHub repository:
-[https://github.com/AybarsOnurlu/Uplens/issues](https://github.com/AybarsOnurlu/Uplens/issues)
+[https://github.com/AybarsOnurlu/BidLume/issues](https://github.com/AybarsOnurlu/BidLume/issues)
